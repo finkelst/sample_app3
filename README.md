@@ -1,3 +1,4 @@
-# Ruby on Rails Tutorial: sample app
+# A Web-Based System for Evaluation Class III Forward Price Contracts with Ruby on Rails
 
-This is the sample application for the [Ruby on Rails Tutorial](http://railstutorial.org/) by [Michael Hartl](http://michaelhartl.com/).
+This is a preliminary application to be used by UW-Extension participating farmers to evaluate class III forward price contracts 
+[*Understanding Dairy Markets*](http://future.aae.wisc.edu/)
