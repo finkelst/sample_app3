@@ -1,8 +1,8 @@
 class StaticPagesController < ApplicationController
   def home
     if signed_in?
-      @micropost = current_user.microposts.build
-      @feed_items = current_user.feed.paginate(page: params[:page])
+      @price = current_user.prices.build
+      
     end
   end
 
@@ -13,5 +13,12 @@ class StaticPagesController < ApplicationController
   end
 
   def contact
+  end
+  
+  def add_price
+	if signed_in?
+		 @price = current_user.prices.build
+		 
+	end
   end
 end
