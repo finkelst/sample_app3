@@ -11,6 +11,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
 	@prices = @user.prices.paginate(page: params[:page])
+	@datagrid   = Hash.new { |h,v| h[v] = {} }
+    current_user.prices.each do |record|
+      date = record.date
+      @datagrid[date.year][date.month] = record
+    end
    
   end
 

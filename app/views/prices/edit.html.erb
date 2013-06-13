@@ -1,0 +1,27 @@
+<div class="mailbox_table">
+<h3>Mailbox Prices </h3>
+<%= link_to "Back to View Only", user_path(current_user) %>
+|
+<%= link_to "Add Price", add_price_path %>
+<table>
+  <tr>
+    <th>Month</th>
+    <% (1..12).each do |m| -%>
+    <th><%= Date::ABBR_MONTHNAMES[m] %></th>
+    <% end -%>
+  </tr>
+<% @datagrid.keys.sort.each do |year| -%>
+  <tr>
+    <th><%= year %></th>
+    <% (1..12).each do |month| -%>
+      <% @price = @datagrid[year][month] -%>
+      <td>
+        <% if @price -%>
+            <%= best_in_place @price, :price, :display_with => :number_to_currency %>       
+        <% end -%>
+      </td>
+    <% end -%>
+  </tr>
+<% end -%>
+</table>
+</div>

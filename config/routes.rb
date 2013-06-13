@@ -2,7 +2,7 @@ SampleApp::Application.routes.draw do
   resources :users 
   resources :sessions, only: [:new, :create, :destroy]
   
-  resources :prices, only: [:create, :destroy, :edit]
+  resources :prices, only: [:create, :destroy, :edit, :update]
   
 
   root to: 'static_pages#home'

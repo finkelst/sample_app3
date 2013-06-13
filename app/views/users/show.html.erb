@@ -13,24 +13,32 @@
     <% if @user.prices.any? %>
       <h3>Mailbox Prices </h3>
 	  <%= link_to "Add Price", add_price_path %>
-      <table>                         
-		<tr>                          
-			<th colspan=2>Date</th>
-			<th rowspan=2>Price($/cwt)</th>
-		</tr>
-		<tr>
-			<th>Year</th>
-			<th>Month</th>
-		</tr>
-		<% @user.prices.each do |price| %>       
-			<tr>
-				<td><%= price.date.strftime('%b') %></td>
-                <td><%= price.date.year %></td>				
-				<td><%= price.price %></td>  
-			</tr>
-		<% end %>                       
-	  </table>                   
-
+	  |
+	  <%= link_to "Edit Prices", edit_price_path(current_user) %>
+      <table>
+  <tr>
+    <th>Month</th>
+    <% (1..12).each do |m| -%>
+    <th><%= Date::ABBR_MONTHNAMES[m] %></th>
+    <% end -%>
+  </tr>
+<% @datagrid.keys.sort.each do |year| -%>
+  <tr>
+    <th><%= year %></th>
+    <% (1..12).each do |month| -%>
+      <% @price = @datagrid[year][month] -%>
+      <td>
+        <% if @price -%>
+            <%= number_to_currency(@price.price) %>       
+        <% end -%>
+      </td>
+    <% end -%>
+  </tr>
+<% end -%>
+</table>
       <%= will_paginate @prices %>
+	  <% else %>
+	  <%= link_to "Add Price", add_price_path %>
     <% end %>
+	
   </div>

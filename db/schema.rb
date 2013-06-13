@@ -24,10 +24,10 @@ ActiveRecord::Schema.define(:version => 20130605213936) do
 
   create_table "prices", :force => true do |t|
     t.date     "date"
-    t.integer  "price"
+    t.decimal  "price",      :precision => 10, :scale => 2
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
   end
 
   add_index "prices", ["user_id"], :name => "index_prices_on_user_id"

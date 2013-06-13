@@ -1,23 +1,12 @@
 <%= form_for(@price) do |f| %>
-  <% if @price.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@price.errors.count, "error") %> prohibited this mailbox_price from being saved:</h2>
-
-      <ul>
-      <% @price.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+  <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <%= f.label :date %><br />
     <%= f.date_select :date, discard_day:true %>
   </div>
   <div class="field">
     <%= f.label :price %><br />
-    <%= f.number_field :price %>
+    <%= f.number_field :price, step:"any" %>
   </div>
   
   <div class="actions">
