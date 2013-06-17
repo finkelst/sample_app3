@@ -5,8 +5,12 @@ class Price < ActiveRecord::Base
   validates :date, presence: true
   validates :price, presence: true
   validates_uniqueness_of :date, :scope => [:user_id]
+  validate :validate_date_in_past
   
-  def mk_bal
-    ActionController::Base.helpers.number_to_currency(self.price, :precision => 2)
+  protected
+  
+  def validate_date_in_past
+    # make sure date isn't in the future
+    self.errors.add(:date, "cannot be in the future") if self.date.future?
   end
 end
